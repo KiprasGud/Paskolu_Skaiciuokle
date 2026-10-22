@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane alignment="TOP_CENTER" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.skaiciuokle.paskolu_skaiciuokle.Controller">
+   <children>
+      <VBox fx:id="pradEkran" alignment="TOP_CENTER" prefHeight="700.0" prefWidth="700.0">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="243.0" text="Būsto paskolos skaičiuklė">
+               <font>
+                  <Font name="Calibri Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="klaidosZinute" textFill="#fb0000">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="257.0" text="Iveskite norima paskolos sumą">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="piniguSuma" maxWidth="200.0" />
+            <HBox alignment="TOP_CENTER" prefHeight="72.0" prefWidth="663.0" spacing="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="72.0" prefWidth="110.0">
+                     <children>
+                        <Label text="Metai">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="metaiPas" prefHeight="25.0" prefWidth="150.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </ComboBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" right="-60.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="72.0" prefWidth="110.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Mėnesiai">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="menesiaiPas" prefWidth="150.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="-60.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" minWidth="-Infinity" prefHeight="200.0" prefWidth="110.0">
+                     <children>
+                        <Label text="Grąžinimo grafikas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="grafikoPas" prefWidth="150.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="-60.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox minWidth="-Infinity" prefHeight="200.0" prefWidth="120.0">
+                     <children>
+                        <Label prefHeight="19.0" prefWidth="123.0" text="Metinis procentas/ai">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="metProc" alignment="CENTER" prefHeight="25.0" prefWidth="116.0" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#PiniguSuma" text="Pasirinkti" />
+         </children>
+      </VBox>
+      <SplitPane fx:id="paskolosEkran" dividerPositions="0.08" orientation="VERTICAL" prefHeight="721.0" prefWidth="890.0" visible="false">
+         <items>
+            <HBox alignment="CENTER">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="52.0" prefWidth="222.5">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="-18.0" layoutY="2.0" prefWidth="222.5" text="Pakeisti skaiciavimo būda">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="22.0" prefWidth="189.0">
+                           <children>
+                              <Button fx:id="skaicavimoKeit" layoutX="-2.0" mnemonicParsing="false" onAction="#pakeitGrafik" prefHeight="25.0" prefWidth="222.5" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="222.5">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="222.5">
+                           <children>
+                              <Label alignment="CENTER" layoutX="-18.0" layoutY="2.0" prefHeight="17.0" prefWidth="222.5" text="Eksportuoti ataskaitą">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button layoutX="-2.0" mnemonicParsing="false" onAction="#DuomEksportas" prefHeight="25.0" prefWidth="222.5" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="222.5">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="-18.0" layoutY="2.0" prefHeight="17.0" prefWidth="222.5" text="Atideti mokėjimą">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button layoutX="-2.0" mnemonicParsing="false" onAction="#AtidejEkranas" prefHeight="25.0" prefWidth="222.5" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.49324324324324326" orientation="VERTICAL" prefHeight="52.0" prefWidth="238.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="47.0" layoutY="2.0" text="Filtruoti mokėjimus">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button layoutX="-3.0" layoutY="-1.0" mnemonicParsing="false" onAction="#FiltrEkran" prefHeight="25.0" prefWidth="190.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="222.5">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="-18.0" layoutY="2.0" prefHeight="17.0" prefWidth="222.5" text="Grįžti į pradžią">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Button fx:id="griztPrad" layoutX="-2.0" mnemonicParsing="false" onAction="#atnaujintDuom" prefHeight="25.0" prefWidth="222.5" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="mokejimoLent" prefHeight="639.0" prefWidth="455.0">
+                    <columns>
+                      <TableColumn fx:id="data" prefWidth="82.66665649414062" text="Data" />
+                      <TableColumn fx:id="bendrSum" prefWidth="81.33331298828125" text="Įmokos suma" />
+                        <TableColumn fx:id="paskSum" prefWidth="90.66668701171875" text="Kredito suma" />
+                        <TableColumn fx:id="palSum" prefWidth="91.33331298828125" text="Palūkanų suma" />
+                        <TableColumn fx:id="likSum" prefWidth="97.33336385091144" text="Likus suma" />
+                    </columns>
+                  </TableView>
+                   <LineChart fx:id="diagrama" prefHeight="700.0" prefWidth="452.0" title="Įmokos dydžio diagrama">
+                       <xAxis>
+                           <NumberAxis label="Metai" side="BOTTOM" fx:id="xAxis" />
+                       </xAxis>
+                       <yAxis>
+                           <NumberAxis fx:id="yAxis" label="Įmokos dydis" side="LEFT" />
+                       </yAxis>
+                   </LineChart>
+               </children>
+            </HBox>
+         </items>
+      </SplitPane>
+      <VBox fx:id="atidejEkran" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" text="Atidėjimo pasirinkimas">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="430.0">
+                     <children>
+                        <Label alignment="CENTER" text="Atidėjimo Data">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="atidejData" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="200.0" prefWidth="346.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="257.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" text="Kiek mėnesių atidėti">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="atidejMen" alignment="CENTER" maxWidth="100.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="454.0">
+                     <children>
+                        <Label text="Įveskite pridėtinį atidėjimo procentą/us">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="atidejProc" alignment="TOP_CENTER" maxWidth="100.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#SkaiciuotiAtidej" text="Pasirinkti" />
+         </children>
+      </VBox>
+      <VBox fx:id="filtrEkran" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" visible="false">
+         <children>
+            <Label text="Mokėjimų filtravimas">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets top="5.0" />
+               </opaqueInsets>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="499.0">
+                     <children>
+                        <Label text="Data nuo">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="nuoData" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="499.0">
+                     <children>
+                        <Label text="Data iki">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="ikiData" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#filtData" text="Pasirinkti" />
+         </children>
+         <opaqueInsets>
+            <Insets top="5.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>
